@@ -1,39 +1,69 @@
-DROP TABLE IF EXISTS Player;
-DROP TABLE IF EXISTS Faction;
 DROP TABLE IF EXISTS SubFaction;
+DROP TABLE IF EXISTS Tactic;
+DROP TABLE IF EXISTS Faction;
+DROP TABLE IF EXISTS GameSystem;
+DROP TABLE IF EXISTS Player;
+
+
+CREATE TABLE IF NOT EXISTS GameSystem (
+    GameSystemID int(10) PRIMARY KEY AUTO_INCREMENT,    /* Primary Key */
+    GameSystemName varchar(20) NOT NULL
+);
 
 CREATE TABLE IF NOT EXISTS Player (
-    PlayerId int(10) PRIMARY KEY AUTO_INCREMENT,
+    PlayerID int(10) PRIMARY KEY AUTO_INCREMENT,    /* Primary Key */
     GamerTag varchar(20) NOT NULL,
     PlayerFirstName varchar(20) NULL,
     PlayerLastName varchar(20) NULL
 );
 
 CREATE TABLE IF NOT EXISTS Faction (
-    FactionId int(10) PRIMARY KEY AUTO_INCREMENT,
-    FactionName varchar(40) NOT NULL,
-    IsLegacy boolean NOT NULL
+    FactionID int(10) PRIMARY KEY AUTO_INCREMENT,   /* Primary Key */
+    GameSystemID int(10) NOT NULL,                  /* Foreign Key */
+    FactionName varchar(40) NOT NULL,               
+    IsLegacy boolean NOT NULL,
+    CONSTRAINT FK_GameSystem_Faction FOREIGN KEY (GameSystemID) REFERENCES GameSystem(GameSystemID)
 );
 
 CREATE TABLE IF NOT EXISTS SubFaction (
-    SubFactionID int(10) PRIMARY KEY AUTO_INCREMENT,
-    FactionID int(10) NOT NULL,
+    SubFactionID int(10) PRIMARY KEY AUTO_INCREMENT,    /* Primary Key */
+    GameSystemID int(10) NOT NULL,                      /* Foreign Key */
+    FactionID int(10) NOT NULL,                         /* Foreign Key */
     SubfactionName varchar(20) NOT NULL,
     IsLegacy boolean NOT NULL,
-    CONSTRAINT FK_Faction_SubFaction FOREIGN KEY (FactionID) REFERENCES Faction(FactionId),
+    CONSTRAINT FK_GameSystem_SubFaction FOREIGN KEY (GameSystemID) REFERENCES GameSystem(GameSystemID),
+    CONSTRAINT FK_Faction_SubFaction FOREIGN KEY (FactionID) REFERENCES Faction(FactionID)
 );
 
-INSERT INTO Player (PlayerId, GamerTag, PlayerFirstName, PlayerLastName) VALUES 
+CREATE TABLE IF NOT EXISTS Tactic (
+    TacticID int(10) PRIMARY KEY AUTO_INCREMENT,    /* Primary Key */
+    GameSystemID int(10) NOT NULL,                  /* Foreign Key */
+    FactionID int(10) NOT NULL,                     /* Foreign Key */
+    TacticName varchar (20) NOT NULL,
+    CONSTRAINT FK_GameSystem_Tactic FOREIGN KEY (GameSystemID) REFERENCES GameSystem(GameSystemID),
+    CONSTRAINT FK_Faction_Tactic FOREIGN KEY (FactionID) REFERENCES Faction(FactionID)
+);
+
+INSERT INTO Player (PlayerID, GamerTag, PlayerFirstName, PlayerLastName) VALUES 
 (NULL, 'PocketsDK', 'Doug', 'Kirchhof'),
 (NULL, 'Gr1mlock', 'Damien', NULL),
 (NULL, 'Critter', NULL, NULL);
 
-INSERT INTO Faction (FactionId, FactionName, IsLegacy) VALUES
-(NULL, 'Space Marines', false),
-(NULL, 'Necrons', false),
-(NULL, 'Tyrannids', false);
+INSERT INTO GameSystem (GameSystemID, GameSystemName) VALUES
+(NULL, 'Warhammer 40k'),
+(NULL, 'Age of Sigmar'),
+(NULL, 'Kill Team');
 
-INSERT INTO SubFaction (SubFactionID, FactionId, SubfactionName, IsLegacy) VALUES
-(NULL, 1, 'Ultramarines', false),
-(NULL, 2, 'Novak', false),
-(NULL, 3, 'Kraken', false);
+INSERT INTO Faction (FactionID, GameSystemID, FactionName, IsLegacy) VALUES
+(NULL, 1, 'Space Marines', false),
+(NULL, 1, 'Necrons', false),
+(NULL, 1, 'Tyrannids', false);
+
+INSERT INTO SubFaction (SubFactionID, GameSystemID, FactionID, SubfactionName, IsLegacy) VALUES
+(NULL, 1, 1, 'Ultramarines', false),
+(NULL, 1, 2, 'Novak', false),
+(NULL, 1, 3, 'Kraken', false);
+
+INSERT INTO Tactic (TacticID, GameSystemID, FactionID, TacticName) VALUES
+(NULL, 1, 1, 'Bolter Fusillades'),
+(NULL, 1, 1, 'Born Heros');
