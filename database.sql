@@ -2,8 +2,10 @@ DROP TABLE IF EXISTS SubFaction;
 DROP TABLE IF EXISTS Tactic;
 DROP TABLE IF EXISTS Faction;
 DROP TABLE IF EXISTS League;
-DROP TABLE IF EXISTS GameSystem;
 DROP TABLE IF EXISTS Player;
+DROP TABLE IF EXISTS Game;
+DROP TABLE IF EXISTS GameSystem;
+DROP TABLE IF EXISTS GamePlayer;
 
 
 CREATE TABLE IF NOT EXISTS GameSystem (
@@ -13,6 +15,7 @@ CREATE TABLE IF NOT EXISTS GameSystem (
 
 CREATE TABLE IF NOT EXISTS Player (
     PlayerID int(10) PRIMARY KEY AUTO_INCREMENT,    /* Primary Key */
+    GameID int(10) NULL,                            /* Foreign Key */
     GamerTag varchar(20) NOT NULL,
     PlayerFirstName varchar(20) NULL,
     PlayerLastName varchar(20) NULL
@@ -53,6 +56,26 @@ CREATE TABLE IF NOT EXISTS League (
     LeagueName varchar(30) NOT NULL,
     CONSTRAINT FK_GameSystem_League FOREIGN KEY (GameSystemID) REFERENCES GameSystem(GameSystemID)            
 );
+
+CREATE TABLE IF NOT EXISTS Game (
+    GameID int(10) PRIMARY KEY AUTO_INCREMENT,      /* Primary Key */
+    LeagueID int(10) NULL,                          /* Foreign Key */
+    GameSystemID int(10) NOT NULL,                  /* Foreign Key */
+    GameSizeID int(10) NULL,                    /* TODO Foreign Key */
+    MissionID int(10) NULL,                     /* TODO Foreign Key */
+    PlayerID int(10) NOT NULL,                      /* Foreign Key */
+    CONSTRAINT FK_League_Game FOREIGN KEY (GameSystemID) REFERENCES GameSystem(GameSystemID) 
+);
+
+/* Connecting table */
+
+CREATE TABLE IF NOT EXISTS GamePlayer (
+    GameID int(10),
+    PlayerID int(10),
+    CONSTRAINT FK_Game_Player FOREIGN KEY (PlayerID) REFERENCES Player(PlayerID),
+    CONSTRAINT FK_Player_Game FOREIGN KEY (GameID) REFERENCES Game(GameID)
+);
+
 
 INSERT INTO Player (PlayerID, GamerTag, PlayerFirstName, PlayerLastName) VALUES 
 (NULL, 'PocketsDK', 'Doug', 'Kirchhof'),
