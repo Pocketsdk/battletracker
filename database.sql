@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS SubFaction;
 DROP TABLE IF EXISTS Tactic;
 DROP TABLE IF EXISTS Faction;
+DROP TABLE IF EXISTS League;
 DROP TABLE IF EXISTS GameSystem;
 DROP TABLE IF EXISTS Player;
 
@@ -44,6 +45,15 @@ CREATE TABLE IF NOT EXISTS Tactic (
     CONSTRAINT FK_Faction_Tactic FOREIGN KEY (FactionID) REFERENCES Faction(FactionID)
 );
 
+CREATE TABLE IF NOT EXISTS League (
+    LeagueID int(10) PRIMARY KEY AUTO_INCREMENT,    /* Primary Key */
+    GameSystemID int(10) NOT NULL,                  /* Foreign Key */
+    LeagueStartDate DATE NOT NULL, 
+    LeagueEndDate DATE NULL,     
+    LeagueName varchar(30) NOT NULL,
+    CONSTRAINT FK_GameSystem_League FOREIGN KEY (GameSystemID) REFERENCES GameSystem(GameSystemID)            
+);
+
 INSERT INTO Player (PlayerID, GamerTag, PlayerFirstName, PlayerLastName) VALUES 
 (NULL, 'PocketsDK', 'Doug', 'Kirchhof'),
 (NULL, 'Gr1mlock', 'Damien', NULL),
@@ -67,3 +77,8 @@ INSERT INTO SubFaction (SubFactionID, GameSystemID, FactionID, SubfactionName, I
 INSERT INTO Tactic (TacticID, GameSystemID, FactionID, TacticName) VALUES
 (NULL, 1, 1, 'Bolter Fusillades'),
 (NULL, 1, 1, 'Born Heros');
+
+INSERT INTO League (LeagueID, GameSystemID, LeagueStartDate, LeagueEndDate, LeagueName) VALUES
+(NULL, 1, '2020-10-10', NULL, 'Path To Glory'),
+(NULL, 1, '2020-10-10', NULL, 'Nova'),
+(NULL, 1, '2020-10-10', NULL, 'Redclaw');
