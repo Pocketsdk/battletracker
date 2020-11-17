@@ -1,11 +1,14 @@
+DROP TABLE IF EXISTS GamePlayer;
+DROP TABLE IF EXISTS Game;
+DROP TABLE IF EXISTS Objective;
+DROP TABLE IF EXISTS ObjectiveGroup;
 DROP TABLE IF EXISTS SubFaction;
 DROP TABLE IF EXISTS Tactic;
 DROP TABLE IF EXISTS Faction;
 DROP TABLE IF EXISTS League;
 DROP TABLE IF EXISTS Player;
-DROP TABLE IF EXISTS Game;
 DROP TABLE IF EXISTS GameSystem;
-DROP TABLE IF EXISTS GamePlayer;
+
 
 
 CREATE TABLE IF NOT EXISTS GameSystem (
@@ -47,6 +50,31 @@ CREATE TABLE IF NOT EXISTS Tactic (
     CONSTRAINT FK_GameSystem_Tactic FOREIGN KEY (GameSystemID) REFERENCES GameSystem(GameSystemID),
     CONSTRAINT FK_Faction_Tactic FOREIGN KEY (FactionID) REFERENCES Faction(FactionID)
 );
+
+CREATE TABLE IF NOT EXISTS ObjectiveGroup (
+    ObjectiveGroupID int(10) PRIMARY KEY AUTO_INCREMENT,
+    FactionID int(10) NULL,             /* Foreign Key */
+    SubfactionID int(10) NULL,          /* Foreign Key */ 
+    GameSystemID int(10) NOT NULL,          /* Foreign Key */             
+    ObjectiveGroup varchar (20) NOT NULL,    
+    IsLegacy boolean NOT NULL,
+    CONSTRAINT FK_ObjectiveGroup_SubFaction FOREIGN KEY (SubFactionID) REFERENCES Subfaction(SubFactionID),
+    CONSTRAINT FK_Faction_ObjectiveGroup FOREIGN KEY (FactionID) REFERENCES Faction(FactionID),
+    CONSTRAINT FK_GameSystem_ObjectiveGroup FOREIGN KEY (GameSystemID) REFERENCES GameSystem(GameSystemID)
+);
+
+CREATE TABLE IF NOT EXISTS Objective (
+    ObjectiveID int(10) PRIMARY KEY AUTO_INCREMENT,
+    FactionID int(10) NULL,             /* Foreign Key */
+    SubfactionID int(10) NULL,          /* Foreign Key */ 
+    GameSystemID int(10) NULL,          /* Foreign Key */  
+    ObjectiveGroupID int(10) NOT NULL,       /* Foreign Key */    
+    ObjectiveName varchar (20) NOT NULL,    
+    IsLegacy boolean NOT NULL,
+    CONSTRAINT FK_Objective_SubFaction FOREIGN KEY (SubFactionID) REFERENCES Subfaction(SubFactionID),
+    CONSTRAINT FK_Faction_Objective FOREIGN KEY (FactionID) REFERENCES Faction(FactionID),
+    CONSTRAINT FK_ObjectiveGroup_Objective FOREIGN KEY (ObjectiveGroupID) REFERENCES ObjectiveGroup(ObjectiveGroupID)
+);   
 
 CREATE TABLE IF NOT EXISTS League (
     LeagueID int(10) PRIMARY KEY AUTO_INCREMENT,    /* Primary Key */
@@ -100,6 +128,16 @@ INSERT INTO SubFaction (SubFactionID, GameSystemID, FactionID, SubfactionName, I
 INSERT INTO Tactic (TacticID, GameSystemID, FactionID, TacticName) VALUES
 (NULL, 1, 1, 'Bolter Fusillades'),
 (NULL, 1, 1, 'Born Heros');
+
+INSERT INTO ObjectiveGroup (ObjectiveGroupID, FactionID, SubFactionID, GameSystemID, ObjectiveGroup) VALUES
+(NULL, NULL, NULL, 1, 'Purge The Enemy'),
+(NULL, NULL, NULL, 1, 'No Mercy, No Respite'),
+(NULL, NULL, NULL, 1, 'Battlefield Supremacy');
+
+INSERT INTO Objective (ObjectiveID, FactionID, SubFactionID, GameSystemID, ObjectiveGroupID, ObjectiveName) VALUES
+(NULL, NULL, NULL, 1, 1, 'Bring It Down'),
+(NULL, NULL, NULL, 1, 2, 'Thin Their Ranks'),
+(NULL, NULL, NULL, 1, 3, 'Engage On All Fronts');
 
 INSERT INTO League (LeagueID, GameSystemID, LeagueStartDate, LeagueEndDate, LeagueName) VALUES
 (NULL, 1, '2020-10-10', NULL, 'Path To Glory'),
