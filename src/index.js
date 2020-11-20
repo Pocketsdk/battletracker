@@ -5,13 +5,13 @@ import App from './App';
 import Header from './components/Header';
 import PlayerOne from './components/PlayerOne';
 import PlayerTwo from './components/PlayerTwo';
+import Nav from './components/Nav';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Header />
-    <PlayerOne />
-    <PlayerTwo />
+  <Router>
+    <Nav />
     <App />
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
