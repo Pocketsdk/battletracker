@@ -1,16 +1,13 @@
 import React from 'react';
+import Faction from './List/Faction';
 
 const PlayerOne = () => {
     return (
         <>
-            <h1>Player One</h1>
-            <select name="factions" id="factions">
-                <option value="space-marines">Space Marines</option>
-                <option value="necrons">Necrons</option>
-                <option value="tao">Tao</option>
-            </select>
+            <h2>Player One</h2>
+            <Faction /> 
         </>
     );
 }
 
-export default PlayerOne;
+export default PlayerOne;``

@@ -1,9 +1,11 @@
 import React from 'react';
+import Faction from './List/Faction';
 
 const PlayerTwo = () => {
     return (
         <>
-            <h1>Player Two</h1>
+            <h2>Player Two</h2>
+            <Faction /> 
         </>
     );
 }

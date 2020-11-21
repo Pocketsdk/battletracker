@@ -1,9 +1,14 @@
 import React from 'react';
+import PlayerOne from './PlayerOne';
+import PlayerTwo from './PlayerTwo';
+import Mission from './List/Mission';
 
 const Input = () => {
     return (
         <>
-            <h1>Input Page</h1>
+            <Mission />
+            <PlayerOne />
+            <PlayerTwo />
         </>
     );
 }
