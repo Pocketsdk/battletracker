@@ -1,9 +1,10 @@
 import React from 'react';
+import "../../tailwind.output.css";
 
 const Faction = () => {
     return (
         <>
-            <h2>Faction</h2>
+            <h2 className="dougs-header-text">Faction</h2>
             <select name="factions" id="factions">
                 <option value="space-marines">Space Marines</option>
                 <option value="necrons">Necrons</option>
@@ -11,7 +12,7 @@ const Faction = () => {
 
             </select>
 
-            <h2>Subfaction</h2>
+            <h2 className="dougs-header-text">Subfaction</h2>
             <select name="sub-factions" id="sub-factions">
                 <option value="ultramarines">Ultramarines</option>
                 <option value="imperial-fists">Imperial Fists</option>
@@ -19,7 +20,7 @@ const Faction = () => {
             </select>
 
             <input type="checkbox" id="custom" name="custom" value="Custom" />
-            <label for="custom"> Chapter</label>
+            <label className="dougs-header-text" for="custom"> Chapter</label>
         </>
     );
 }

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dougs-header-text {
+    @apply font-bold text-yellow-500;
+}
+
+.dougs-header-one {
+    @apply font-bold text-yellow-500 text-lg;
+}
+
+
