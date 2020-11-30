@@ -4,7 +4,7 @@ import "../../tailwind.output.css";
 const Faction = () => {
     return (
         <>
-            <form>
+            <form >
                 <h2 className="dougs-header-text">Faction</h2>
                 <select name="factions" id="factions">
                     <option value="space-marines">Space Marines</option>
@@ -20,7 +20,7 @@ const Faction = () => {
                 </select>
 
                 <input type="checkbox" id="custom" name="custom" value="Custom" />
-                <label className="dougs-header-text" htmlFor="custom"> Chapter</label>
+                <label className="dougs-header-text" htmlFor="custom"> Custom</label>
             </form>
         </>
     );
