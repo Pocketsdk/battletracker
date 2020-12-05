@@ -9,5 +9,9 @@
 .dougs-header-one {
     @apply font-bold text-yellow-500 text-lg;
 }
-
-
+.dougs-checkbox {
+    @apply w-6 h-6;
+}
+.dougs-smalltextbox {
+    @apply border border-black rounded-sm w-6 text-center;
+}

@@ -32082,6 +32082,20 @@ video {
   color: rgba(245, 158, 11, var(--tw-text-opacity));
 }
 
+.dougs-checkbox {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.dougs-smalltextbox {
+  --tw-border-opacity: 1;
+  border-color: rgba(0, 0, 0, var(--tw-border-opacity));
+  border-radius: 0.125rem;
+  border-width: 1px;
+  text-align: center;
+  width: 1.5rem;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -189466,5 +189480,3 @@ video {
     animation: bounce 1s infinite;
   }
 }
-
-
