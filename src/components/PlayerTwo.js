@@ -1,5 +1,6 @@
 import React from 'react';
 import Faction from './List/Faction';
+import "../tailwind.output.css";
 
 const PlayerTwo = () => {
     return (

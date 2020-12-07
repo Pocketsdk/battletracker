@@ -12,7 +12,7 @@ const Input = () => {
 
     return (
         <>
-            <div className= "flex flex-row space-x-2 p-2 justify-center items-center bg-blue-600">
+            <div className= "flex flex-row space-x-2 px-2 pt-2 justify-center items-center bg-blue-600">
                 <div>
                     <PlayerOne />
                 </div>
@@ -31,11 +31,13 @@ const Input = () => {
                     <PlayerTwo />
                 </div>
             </div>
-            <div>
-                <ObjectivesOne />
-            </div>
-            <div>
-                <ObjectivesTwo />
+            <div className= "flex flex-row space-x-2 p-2 justify-center items-center bg-blue-600">
+                <div className="border-2 rounded-lg bg-blue-500 p-2 shadow-lg">
+                    <ObjectivesOne />
+                </div>
+                <div className="border-2 rounded-lg bg-blue-500 p-2 shadow-lg">
+                    <ObjectivesTwo />
+                </div>
             </div>
         </>
       

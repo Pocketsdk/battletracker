@@ -3,9 +3,6 @@ import Input from './components/Input';
 import Display from './components/Display';
 import Home from './components/Home';
 
-// API endpoint
-// http://localhost/battletracker/server/api/faction/read.php
-
 function App() {
   return (
     <div className="App">
