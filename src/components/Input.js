@@ -3,6 +3,7 @@ import PlayerOne from './PlayerOne';
 import PlayerTwo from './PlayerTwo';
 import Mission from './List/Mission';
 import ObjectivesOne from './ObjectivesOne';
+import ObjectivesTwo from './ObjectivesTwo';
 
 const Input = () => {
 
@@ -32,6 +33,9 @@ const Input = () => {
             </div>
             <div>
                 <ObjectivesOne />
+            </div>
+            <div>
+                <ObjectivesTwo />
             </div>
         </>
       
