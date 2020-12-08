@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { updateScoreP1, updateScoreP2 } from './actions';
 
-const ObjectivesOne = () => {
+const ObjectivesOne = ({ score, onAnyChange }) => {
+
+    const [p1Score, setp1Score] = useState(0);
+    const [p2Score, setp2Score] = useState(0);
+
+    const updateScore = () => {
+        let numberOfCheckedBoxes = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        let newScore =  numberOfCheckedBoxes * 5;
+        setp1Score(newScore);
+        onAnyChange(p1Score);
+    }
+
     return (
         <>
             <form>
@@ -19,23 +32,23 @@ const ObjectivesOne = () => {
                         </td>
                         <td className="p-1"> 
                             <label className="hidden" htmlFor="p1o1r1"></label> 
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r1" name="p1o1r1" value="p1o1r1" /> 
+                            <input className="dougs-checkbox" type="checkbox" id="p1o1r1" name="p1o1r1" value="p1o1r1" onChange={() => updateScore() } /> 
                         </td>
                         <td className="p-1"> 
                             <label className="hidden" htmlFor="p1o1r2"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r2" name="p1o1r2" value="p1o1r2" /> 
+                            <input className="dougs-checkbox" type="checkbox" id="p1o1r2" name="p1o1r2" value="p1o1r2" onChange={() => updateScore() }/> 
                         </td>
                         <td className="p-1"> 
                             <label className="hidden" htmlFor="p1o1r3"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r3" name="p1o1r3" value="p1o1r3" /> 
+                            <input className="dougs-checkbox" type="checkbox" id="p1o1r3" name="p1o1r3" value="p1o1r3" onChange={() => updateScore() }/> 
                         </td>
                         <td className="p-1"> 
                             <label className="hidden" htmlFor="p1o1r4"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r4" name="p1o1r4" value="p1o1r4" /> 
+                            <input className="dougs-checkbox" type="checkbox" id="p1o1r4" name="p1o1r4" value="p1o1r4" onChange={() => updateScore() }/> 
                         </td>
                         <td className="p-1">
                             <label className="hidden" htmlFor="p1o1r5"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r5" name="p1o1r5" value="p1o1r5" /> 
+                            <input className="dougs-checkbox" type="checkbox" id="p1o1r5" name="p1o1r5" value="p1o1r5" onChange={() => updateScore() }/> 
                         </td>
                     </tr>
                     <tr>
@@ -44,23 +57,23 @@ const ObjectivesOne = () => {
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o2r1"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r1" name="p1o2r1" value="p1o2r1" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o2r1" name="p1o2r1" value="p1o2r1" onChange={() => updateScore() }/>
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o2r2"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r2" name="p1o2r2" value="p1o2r2" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o2r2" name="p1o2r2" value="p1o2r2" onChange={() => updateScore() }/>
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o2r3"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r3" name="p1o2r3" value="p1o2r3" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o2r3" name="p1o2r3" value="p1o2r3" onChange={() => updateScore() }/>
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o2r4"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r4" name="p1o2r4" value="p1o2r4" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o2r4" name="p1o2r4" value="p1o2r4" onChange={() => updateScore() }/>
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o2r5"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r5" name="p1o2r5" value="p1o2r5" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o2r5" name="p1o2r5" value="p1o2r5" onChange={() => updateScore() }/>
                         </td>
                     </tr>
                     <tr>
@@ -69,23 +82,23 @@ const ObjectivesOne = () => {
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o3r1"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r1" name="p1o3r1" value="p1o3r1" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o3r1" name="p1o3r1" value="p1o3r1" onChange={() => updateScore() }/>
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o3r2"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r2" name="p1o3r2" value="p1o3r2" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o3r2" name="p1o3r2" value="p1o3r2" onChange={() => updateScore() }/>
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o3r3"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r3" name="p1o3r3" value="p1o3r3" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o3r3" name="p1o3r3" value="p1o3r3" onChange={() => updateScore() }/>
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o3r4"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r4" name="p1o3r4" value="p1o3r4" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o3r4" name="p1o3r4" value="p1o3r4" onChange={() => updateScore() }/>
                         </td>
                         <td className="p-1">
                             <label className="hidden" for="p1o3r5"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r5" name="p1o3r5" value="p1o3r5" />
+                            <input className="dougs-checkbox" type="checkbox" id="p1o3r5" name="p1o3r5" value="p1o3r5" onChange={() => updateScore() }/>
                         </td>
                     </tr>
                     <tr className ="p-1">
@@ -172,4 +185,12 @@ const ObjectivesOne = () => {
     )
 };
 
-export default ObjectivesOne;
+const mapStateToProps = state => ({
+    score: state.score,
+});
+    
+const mapDispatchToProps = dispatch => ({
+    onAnyChange: score => dispatch(updateScoreP1(score)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ObjectivesOne);
