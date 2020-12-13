@@ -1,15 +1,14 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import {User1Context} from '../User1Context';
 import {User2Context} from '../User2Context';
 
 const ObjectivesOne = () => {
     const [p1Score, setp1Score] = useState(0);
-    const [p2Score, setp2Score] = useState(0);
     const [checked, setChecked] = useState(false);
 
     useEffect(() => {
         updateScoreWithoutValue();
+        console.log(p1Score);
         },
     );
 
@@ -47,7 +46,7 @@ const ObjectivesOne = () => {
                                 </td>
                                 <td className="p-1"> 
                                     <label className="hidden" htmlFor="p1o1r2"></label>
-                                    <input className="dougs-checkbox" type="checkbox" id="p1o1r2" name="p1o1r2" value="p1o1r2"/> 
+                                    <input className="dougs-checkbox" type="checkbox" id="p1o1r2" name="p1o1r2" value={checked} onChange={() => setChecked(checked => !checked)} /> 
                                 </td>
                                 <td className="p-1"> 
                                     <label className="hidden" htmlFor="p1o1r3"></label>
