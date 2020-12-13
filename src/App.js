@@ -1,4 +1,4 @@
-import React, {Provider, useContext} from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Input from './components/Input';
 import Display from './components/Display';
@@ -6,7 +6,6 @@ import Home from './components/Home';
 
 
 const User1Context = React.createContext();
-
 const User2Context = React. createContext();
 
 class App extends React.Component {
