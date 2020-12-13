@@ -3,21 +3,28 @@ import { Switch, Route } from 'react-router-dom';
 import Input from './components/Input';
 import Display from './components/Display';
 import Home from './components/Home';
+import { UserContext } from './UserContext';
 
-
-const User1Context = React.createContext();
-const User2Context = React.createContext();
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      scorep1: 33,
+      scorep2: 11,
+      updateScorep1: ( newTotal1 ) => {
+        this.setState(() => ({
+          scorep1 : newTotal1,
+        }))
+      }
+    };
+  }
 
   render() {
 
-
-    const {user1, user2} = this.props;
-
     return (
-      <User1Context.Provider value={user1}>
-        <User2Context.Provider value={user2}>
+      <UserContext.Provider value={this.state}>
           <div className="App">
             <Switch>
               <Route path="/" component={Home} exact></Route>
@@ -25,8 +32,7 @@ class App extends React.Component {
               <Route path="/Display" component={Display}></Route>
             </Switch>
           </div>
-        </User2Context.Provider>
-      </User1Context.Provider>
+      </UserContext.Provider>
     );
   }
 }
