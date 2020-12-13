@@ -1,196 +1,187 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { updateScoreP1, updateScoreP2 } from './actions';
+import {User1Context} from '../User1Context';
+import {User2Context} from '../User2Context';
 
-const ObjectivesOne = ({ score, onAnyChange }) => {
+const ObjectivesOne = () => {
 
     const [p1Score, setp1Score] = useState(0);
     const [p2Score, setp2Score] = useState(0);
 
-    const updateScore = () => {
-        let numberOfCheckedBoxes = document.querySelectorAll('input[type="checkbox"]:checked').length;
-        let newScore =  numberOfCheckedBoxes * 5;
-        setp1Score(newScore);
-        onAnyChange(p1Score);
-    }
-
     return (
-        <>
-            <form>
-                <table>
-                    <tr>
-                        <th>Primary</th>
-                        <th>1</th>
-                        <th>2</th>
-                        <th>3</th>
-                        <th>4</th>
-                        <th>5</th>
-                    </tr>
-                    <tr>
-                        <td className="p-1">
-                            Hold 1
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1o1r1"></label> 
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r1" name="p1o1r1" value="p1o1r1" onChange={() => updateScore() } /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1o1r2"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r2" name="p1o1r2" value="p1o1r2" onChange={() => updateScore() }/> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1o1r3"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r3" name="p1o1r3" value="p1o1r3" onChange={() => updateScore() }/> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1o1r4"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r4" name="p1o1r4" value="p1o1r4" onChange={() => updateScore() }/> 
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" htmlFor="p1o1r5"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o1r5" name="p1o1r5" value="p1o1r5" onChange={() => updateScore() }/> 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="p-1">
-                            Hold 2
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o2r1"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r1" name="p1o2r1" value="p1o2r1" onChange={() => updateScore() }/>
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o2r2"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r2" name="p1o2r2" value="p1o2r2" onChange={() => updateScore() }/>
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o2r3"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r3" name="p1o2r3" value="p1o2r3" onChange={() => updateScore() }/>
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o2r4"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r4" name="p1o2r4" value="p1o2r4" onChange={() => updateScore() }/>
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o2r5"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o2r5" name="p1o2r5" value="p1o2r5" onChange={() => updateScore() }/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="p-1">
-                            Hold more
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o3r1"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r1" name="p1o3r1" value="p1o3r1" onChange={() => updateScore() }/>
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o3r2"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r2" name="p1o3r2" value="p1o3r2" onChange={() => updateScore() }/>
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o3r3"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r3" name="p1o3r3" value="p1o3r3" onChange={() => updateScore() }/>
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o3r4"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r4" name="p1o3r4" value="p1o3r4" onChange={() => updateScore() }/>
-                        </td>
-                        <td className="p-1">
-                            <label className="hidden" for="p1o3r5"></label>
-                            <input className="dougs-checkbox" type="checkbox" id="p1o3r5" name="p1o3r5" value="p1o3r5" onChange={() => updateScore() }/>
-                        </td>
-                    </tr>
-                    <tr className ="p-1">
-                        <th>Secondary</th>
-                    </tr>
-                    <tr>
-                        <td className ="p-1">
-                            Engadge on all fronts
-                        </td>   
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s1r1"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r1" name="p1s1r1" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s1r2"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r2" name="p1s1r2" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s1r3"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r3" name="p1s1r3" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s1r4"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r4" name="p1s1r4" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s1r5"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r5" name="p1s1r5" /> 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className ="p-1">
-                            Raise the Banners high
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s2r1"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r1" name="p1s2r1" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s2r2"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r2" name="p1s2r2" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s2r3"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r3" name="p1s2r3" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s2r4"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r4" name="p1s2r4" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s2r5"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r5" name="p1s2r5" /> 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className ="p-1">
-                            While we stand we fight
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s3r1"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r1" name="p1s3r1" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s3r2"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r2" name="p1s3r2" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s3r3"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r3" name="p1s3r3" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s3r4"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r4" name="p1s3r4" /> 
-                        </td>
-                        <td className="p-1"> 
-                            <label className="hidden" htmlFor="p1s3r5"></label> 
-                            <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r5" name="p1s3r5" /> 
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </>
+        <User1Context.Consumer>
+            {user1 => (
+            <User2Context.Consumer>
+                {user2 => (
+                <form>
+                    <table>
+                        <tr>
+                            <th>Primary</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                        </tr>
+                        <tr>
+                            <td className="p-1">
+                                Hold 1
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1o1r1"></label> 
+                                <input className="dougs-checkbox" type="checkbox" id="p1o1r1" name="p1o1r1" value="p1o1r1" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1o1r2"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o1r2" name="p1o1r2" value="p1o1r2"/> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1o1r3"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o1r3" name="p1o1r3" value="p1o1r3"/> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1o1r4"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o1r4" name="p1o1r4" value="p1o1r4"/> 
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" htmlFor="p1o1r5"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o1r5" name="p1o1r5" value="p1o1r5"/> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="p-1">
+                                Hold 2
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o2r1"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o2r1" name="p1o2r1" value="p1o2r1"/>
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o2r2"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o2r2" name="p1o2r2" value="p1o2r2"/>
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o2r3"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o2r3" name="p1o2r3" value="p1o2r3"/>
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o2r4"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o2r4" name="p1o2r4" value="p1o2r4"/>
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o2r5"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o2r5" name="p1o2r5" value="p1o2r5"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="p-1">
+                                Hold more
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o3r1"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o3r1" name="p1o3r1" value="p1o3r1"/>
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o3r2"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o3r2" name="p1o3r2" value="p1o3r2"/>
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o3r3"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o3r3" name="p1o3r3" value="p1o3r3"/>
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o3r4"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o3r4" name="p1o3r4" value="p1o3r4"/>
+                            </td>
+                            <td className="p-1">
+                                <label className="hidden" for="p1o3r5"></label>
+                                <input className="dougs-checkbox" type="checkbox" id="p1o3r5" name="p1o3r5" value="p1o3r5"/>
+                            </td>
+                        </tr>
+                        <tr className ="p-1">
+                            <th>Secondary</th>
+                        </tr>
+                        <tr>
+                            <td className ="p-1">
+                                Engadge on all fronts
+                            </td>   
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s1r1"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r1" name="p1s1r1" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s1r2"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r2" name="p1s1r2" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s1r3"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r3" name="p1s1r3" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s1r4"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r4" name="p1s1r4" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s1r5"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s1r5" name="p1s1r5" /> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className ="p-1">
+                                Raise the Banners high
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s2r1"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r1" name="p1s2r1" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s2r2"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r2" name="p1s2r2" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s2r3"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r3" name="p1s2r3" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s2r4"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r4" name="p1s2r4" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s2r5"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s2r5" name="p1s2r5" /> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className ="p-1">
+                                While we stand we fight
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s3r1"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r1" name="p1s3r1" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s3r2"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r2" name="p1s3r2" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s3r3"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r3" name="p1s3r3" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s3r4"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r4" name="p1s3r4" /> 
+                            </td>
+                            <td className="p-1"> 
+                                <label className="hidden" htmlFor="p1s3r5"></label> 
+                                <input className="dougs-smalltextbox" type="text" size="2" maxlength="2" id="p1s3r5" name="p1s3r5" /> 
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                )}
+            </User2Context.Consumer>
+            )}
+        </User1Context.Consumer>
     )
 };
 
-const mapStateToProps = state => ({
-    score: state.score,
-});
-    
-const mapDispatchToProps = dispatch => ({
-    onAnyChange: score => dispatch(updateScoreP1(score)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ObjectivesOne);
+export default ObjectivesOne;
