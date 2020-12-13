@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import PlayerOne from './PlayerOne';
 import PlayerTwo from './PlayerTwo';
 import Mission from './List/Mission';
@@ -6,7 +6,6 @@ import ObjectivesOne from './ObjectivesOne';
 import ObjectivesTwo from './ObjectivesTwo';
 import {User1Context} from '../User1Context';
 import {User2Context} from '../User2Context';
-
 
 
 const Input = () => {
