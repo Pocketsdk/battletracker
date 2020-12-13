@@ -15,6 +15,11 @@ const Faction = () => {
         <>
             <form >
                 <h2 className="dougs-header-text">Faction</h2>
+                <select name="factions" id="factions">
+                    <option value="spacemarines">Spacemarines</option>
+                    <option value="tau">Tau</option>
+                    <option value="necrons">Necrons</option>
+                </select>
 
                 <h2 className="dougs-header-text">Subfaction</h2>
                 <select name="sub-factions" id="sub-factions">
